@@ -1,0 +1,56 @@
+version:  '3'
+
+services:
+  backend:
+    restart: always
+    build: ./backend
+    expose:
+      - "8000"
+    volumes:
+      - ./backend/:/backend
+    env_file: test_docker.env
+    working_dir: /backend/
+    links:
+      - db
+    depends_on:
+      - db
+
+
+    
+
+  frontend:
+    image: node:latest
+    volumes:
+      - ./frontend/:/frontend
+    env_file: test_docker.env
+    working_dir: /frontend/
+    command: sh entrypoint.sh
+
+    
+    
+  nginx:
+    restart: always
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./frontend/build:/var/www/frontend
+    depends_on: 
+      - backend
+    env_file: test_docker.env
+    
+  
+  db:
+    restart: always
+    image: mysql:5.7
+    env_file: test_docker.env
+    volumes: 
+      - ./mysql/data/db:/var/lib/mysql
+      - ./mysql/init/dump.sql:/mysql/init/dump.sql
+
+    
+    
+    
+      
+    
