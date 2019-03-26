@@ -4,7 +4,7 @@ import {actions as messageActions} from "../../redux/action/message";
 import React, {Component} from "react";
 import {Tabs,Flex,WhiteSpace} from 'antd-mobile'
 import {Link} from 'react-router-dom';
-import {Toast} from "antd-mobile/lib/index";
+
 
 
 const tabs=[

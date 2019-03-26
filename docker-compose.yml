@@ -1,15 +1,14 @@
 version:  '3'
 
 services:
+
   backend:
     restart: always
     build: ./backend
-    expose:
-      - "8000"
-    volumes:
-      - ./backend/:/backend
+    ports:
+      - "5000:5000"
     env_file: test_docker.env
-    working_dir: /backend/
+    working_dir: /backend
     links:
       - db
     depends_on:
@@ -21,24 +20,28 @@ services:
   frontend:
     image: node:latest
     volumes:
-      - ./frontend/:/frontend
+      - ./frontend:/frontend
     env_file: test_docker.env
-    working_dir: /frontend/
-    command: sh entrypoint.sh
+    working_dir: /frontend
+    command: npm start
+    ports:
+      - "3000:3000"
+
+
 
     
-    
-  nginx:
-    restart: always
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./frontend/build:/var/www/frontend
-    depends_on: 
-      - backend
-    env_file: test_docker.env
+ #ginx:
+ # restart: always
+ # build: ./nginx
+ # volumes:
+ #   - frontend_static:/frontend
+ # links:
+ #   - backend:uwsgi
+ # ports:
+ #   - "80:80"
+ # depends_on:
+ #   - backend
+ # env_file: test_docker.env
     
   
   db:
@@ -47,7 +50,14 @@ services:
     env_file: test_docker.env
     volumes: 
       - ./mysql/data/db:/var/lib/mysql
-      - ./mysql/init/dump.sql:/mysql/init/dump.sql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    expose:
+      - 3306
+    ports:
+      - "3307:3306"
+
+#volumes:
+#  frontend_static:
 
     
     

@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "Prism": "^2.0.0",
-    "antd-mobile": "^2.2.5",
+    "antd-mobile": "^2.2.9",
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
     "babel-core": "6.26.0",
@@ -37,6 +37,7 @@
     "jest": "20.0.4",
     "marked": "^0.5.2",
     "moment": "^2.22.2",
+    "npm": "^6.9.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
@@ -122,5 +123,10 @@
   },
   "eslintConfig": {
     "extends": "react-app"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

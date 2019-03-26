@@ -1,4 +1,6 @@
 *.pyc
 .idea/
-.vscode
 .mypy_cache
+
+# frontend
+frontend/node_modules/
