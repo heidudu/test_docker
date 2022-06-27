@@ -15,7 +15,7 @@ Mako==1.0.7
 Markdown==3.0.1
 MarkupSafe==1.1.0
 mysql-connector==2.1.6
-mysql-connector-python==8.0.13
+mysql-connector-python==8.0.14
 protobuf==3.6.1
 PyMySQL==0.9.3
 python-dateutil==2.7.5
